@@ -2,7 +2,7 @@
   description = "A basic Go web server setup";
 
   inputs = {
-    nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
   };
 

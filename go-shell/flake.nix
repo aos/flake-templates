@@ -2,7 +2,7 @@
   description = "A basic Go shell";
 
   inputs = {
-    nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
   };
 
