@@ -18,7 +18,7 @@
       go-web-server = {
         path = ./go-web-server;
         description = "Minimal Go web server template";
-      }
+      };
     };
   };
 }
