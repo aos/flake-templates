@@ -1,5 +1,5 @@
 {
-  description = "Minimal Rust flake template";
+  description = "Minimal Rust shell flake template";
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
