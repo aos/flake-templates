@@ -12,7 +12,7 @@
         description = "Minimal Rust shell flake template";
       };
       rust-app = {
-        path = ./rust-app-minimal;
+        path = ./rust-app;
         description = "Minimal Rust app flake template";
       };
       go-shell = {

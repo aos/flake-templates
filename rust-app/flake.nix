@@ -3,11 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    rust-overlay.url = "github:oxalica/rust-overlay";
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, rust-overlay, utils }:
+  outputs = { self, nixpkgs, utils }:
     let
       cargoToml = nixpkgs.lib.importTOML ./Cargo.toml;
       inherit (cargoToml.package) name version;
