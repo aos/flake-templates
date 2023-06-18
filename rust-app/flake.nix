@@ -3,10 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    utils.url = "github:numtide/flake-utils";
+    utils = {
+      url = "github:numtide/flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, utils }:
+  outputs = { self, nixpkgs, utils, rust-overlay }:
     let
       cargoToml = nixpkgs.lib.importTOML ./Cargo.toml;
       inherit (cargoToml.package) name version;
@@ -17,6 +24,7 @@
       pkgsForSystem = system: import nixpkgs {
         inherit system;
         overlays = [
+          (import rust-overlay)
           localOverlay
         ];
       };

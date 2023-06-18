@@ -1,15 +1,17 @@
-{ mkShell, cargo, clippy, openssl, pkg-config, rust-analyzer, rustc, rustPlatform, rustfmt }:
+{ mkShell, openssl, pkg-config, rust-analyzer, rust-bin }:
 
 mkShell {
   nativeBuildInputs = [
-    cargo
-    clippy
     openssl
     pkg-config
-    rustc
     rust-analyzer
-    rustfmt
-  ];
+    (rust-bin.stable.latest.default.override {
+      extensions = [ "rust-src" ];
+    })
 
-  RUST_SRC_PATH = "${rustPlatform.rustLibSrc}";
+    # (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
+    #   extensions = [ "rust-src" ];
+    #   targets = ["arm-unknown-linux-gnueabihf" ];
+    # }))
+  ];
 }

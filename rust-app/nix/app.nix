@@ -1,4 +1,4 @@
-{ rustPlatform, clippy, name, version }:
+{ rustPlatform, name, version }:
 
 rustPlatform.buildRustPackage rec {
   pname = name;
