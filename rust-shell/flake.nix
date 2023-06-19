@@ -20,12 +20,11 @@
       with pkgs;
       {
         devShells.default = mkShell {
-          buildInputs = [
+          nativeBuildInputs = [
             (rust-bin.stable.latest.default.override {
               extensions = [
                 "rust-src"
                 "rust-analyzer"
-                "clippy"
               ];
             })
           ];
