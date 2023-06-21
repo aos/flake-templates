@@ -6,7 +6,10 @@ mkShell {
     pkg-config
     rust-analyzer
     (rust-bin.stable.latest.default.override {
-      extensions = [ "rust-src" ];
+      extensions = [
+        "rust-src"
+        "rust-analyzer"
+      ];
     })
 
     # (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
