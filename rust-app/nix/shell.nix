@@ -1,14 +1,14 @@
-{ mkShell, openssl, pkg-config, rust-analyzer, rust-bin }:
+{ mkShell, rust-bin, ... }:
 
 mkShell {
   nativeBuildInputs = [
     openssl
     pkg-config
-    rust-analyzer
     (rust-bin.stable.latest.default.override {
       extensions = [
         "rust-src"
         "rust-analyzer"
+        "clippy"
       ];
     })
 
