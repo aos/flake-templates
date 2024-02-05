@@ -7,6 +7,10 @@
         path = ./python-poetry;
         description = "Simple Python + Poetry template";
       };
+      python-jupyter-dl = {
+        path = ./python-jupyter-dl;
+        description = "Python + Poetry + Jupyterlab for deep learning";
+      };
       rust-shell = {
         path = ./rust-shell;
         description = "Minimal Rust shell flake template";
