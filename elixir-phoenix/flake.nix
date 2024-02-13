@@ -22,7 +22,7 @@
       ];
 
       ERL_INCLUDE_PATH = "${erlang}/lib/erlang/usr/include";
-      ERL_AFLAGS = "-kernel shell_history enabled -kernel shell_history_path '${toString ./.}.erlang-history'";
+      ERL_AFLAGS = "-kernel shell_history enabled";
 
       shellHook = ''
         # Allow mix to work on local directory
