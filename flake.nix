@@ -3,6 +3,10 @@
 
   outputs = { self, ... }: {
     templates = {
+      elixir = {
+        path = ./elixir;
+        description = "Elixir flake template";
+      };
       python-poetry = {
         path = ./python-poetry;
         description = "Simple Python + Poetry template";
