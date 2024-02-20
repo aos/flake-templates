@@ -45,7 +45,8 @@
         # PG setup
         echo "Starting PSQL on port ${pg_port} user: ${pg_user} pass: ${pg_pass}"
 
-        pg_cntr_name="psql-${builtins.hashString "md5" "''$PWD"}"
+        # Get MD5 hash of current directory
+        pg_cntr_name="psql-''$(pwd | md5sum | awk '{print $1}')"
         pg_docker_volume="$PWD/.pg_docker_volume"
         status="$(podman inspect -f='{{.State.Status}}' $pg_cntr_name 2>/dev/null)"
         if [[ $? -eq 0 && $status =~ (exited|running) ]]; then
