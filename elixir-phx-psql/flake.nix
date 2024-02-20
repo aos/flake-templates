@@ -10,6 +10,10 @@
     elixir = beamPkgs.elixir_1_16;
     hex = beamPkgs.hex;
     elixir_ls = beamPkgs.elixir-ls;
+
+    pg_port = "15432";
+    pg_user = "postgres";
+    pg_pass = "postgres";
   in {
     devShells."${system}".default = pkgs.mkShell {
       buildInputs = [
@@ -19,6 +23,7 @@
         elixir_ls
         pkgs.inotifyTools
         pkgs.nodejs
+        pkgs.postgresql
       ];
 
       ERL_INCLUDE_PATH = "${erlang}/lib/erlang/usr/include";
@@ -36,7 +41,28 @@
         export PATH=$MIX_HOME/bin:$PATH
         export PATH=$MIX_HOME/escripts:$PATH
         export PATH=$HEX_HOME/bin:$PATH
-      '';
+
+        # PG setup
+        echo "Starting PSQL on port ${pg_port} user: ${pg_user} pass: ${pg_pass}"
+
+        pg_cntr_name="psql-${builtins.hashString "md5" "''$PWD"}"
+        pg_docker_volume="$PWD/.pg_docker_volume"
+        status="$(podman inspect -f='{{.State.Status}}' $pg_cntr_name 2>/dev/null)"
+        if [[ $? -eq 0 && $status =~ (exited|running) ]]; then
+          podman start "$pg_cntr_name"
+        else
+          mkdir -p $pg_docker_volume
+          podman run --name "$pg_cntr_name" \
+                     -d -v $pg_docker_volume:/var/lib/postgresql/data:rw \
+                     -e POSTGRES_PASSWORD=${pg_pass} \
+                     -e PGPORT=${pg_port} \
+                     -p ${pg_port}:${pg_port} \
+                     docker.io/postgres
+        fi
+
+        # For convenience
+        alias pg="PGPASSWORD=${pg_pass} psql -p ${pg_port} -U ${pg_user} -h localhost"
+        '';
     };
   };
 }
