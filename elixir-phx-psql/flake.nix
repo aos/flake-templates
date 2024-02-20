@@ -62,6 +62,8 @@
 
         # For convenience
         alias pg="PGPASSWORD=${pg_pass} psql -p ${pg_port} -U ${pg_user} -h localhost"
+
+        # "Run: `mix archive.install hex phx_new` if need be."
         '';
     };
   };

@@ -37,6 +37,8 @@
         export PATH=$MIX_HOME/bin:$PATH
         export PATH=$MIX_HOME/escripts:$PATH
         export PATH=$HEX_HOME/bin:$PATH
+
+        # "Run: `mix archive.install hex phx_new` if need be."
       '';
     };
   };
