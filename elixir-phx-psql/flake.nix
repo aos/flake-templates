@@ -44,10 +44,11 @@
         # PG setup
         echo "Starting PSQL on port ${pg_port} user: ${pg_user} pass: ${pg_pass}"
 
-        base_pwd="basename $PWD"
-        pwd_hash="pwd | md5sum | awk '{print $1}' | head -c 6"
-        pg_cntr_name="psql-$base_pwd-$pwd_hash"
+        base_cwd="''$(basename $PWD)"
+        pwd_hash="''$(pwd | md5sum | awk '{print $1}' | head -c 6)"
+        pg_cntr_name="psql-$base_cwd-$pwd_hash"
         pg_docker_volume="$PWD/.pg_docker_volume"
+
         status="$(podman inspect -f='{{.State.Status}}' $pg_cntr_name 2>/dev/null)"
         if [[ $? -eq 0 && $status =~ (exited|running) ]]; then
           podman start "$pg_cntr_name"
