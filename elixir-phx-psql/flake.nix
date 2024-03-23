@@ -38,15 +38,15 @@
         export ERL_LIBS=$HEX_HOME/lib/erlang/lib
 
         # Concat paths
-        export PATH=$MIX_HOME/bin:$PATH
-        export PATH=$MIX_HOME/escripts:$PATH
+        export PATH=$MIX_HOME/escripts:$MIX_HOME/bin:$PATH
         export PATH=$HEX_HOME/bin:$PATH
 
         # PG setup
         echo "Starting PSQL on port ${pg_port} user: ${pg_user} pass: ${pg_pass}"
 
-        # Get MD5 hash of current directory
-        pg_cntr_name="psql-''$(pwd | md5sum | awk '{print $1}')"
+        base_pwd="basename $PWD"
+        pwd_hash="pwd | md5sum | awk '{print $1}' | head -c 6"
+        pg_cntr_name="psql-$base_pwd-$pwd_hash"
         pg_docker_volume="$PWD/.pg_docker_volume"
         status="$(podman inspect -f='{{.State.Status}}' $pg_cntr_name 2>/dev/null)"
         if [[ $? -eq 0 && $status =~ (exited|running) ]]; then
@@ -61,10 +61,10 @@
                      docker.io/postgres
         fi
 
+        echo 'Run: `mix archive.install hex phx_new` if need be.'
+
         # For convenience
         alias pg="PGPASSWORD=${pg_pass} psql -p ${pg_port} -U ${pg_user} -h localhost"
-
-        # "Run: `mix archive.install hex phx_new` if need be."
         '';
     };
   };
