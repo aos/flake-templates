@@ -60,9 +60,9 @@
                      -e PGPORT=${pg_port} \
                      -p ${pg_port}:${pg_port} \
                      docker.io/postgres
-        fi
 
-        echo 'Run: `mix archive.install hex phx_new` if need be.'
+          echo 'Run: `mix archive.install hex phx_new` if need be.'
+        fi
 
         # For convenience
         alias pg="PGPASSWORD=${pg_pass} psql -p ${pg_port} -U ${pg_user} -h localhost"
