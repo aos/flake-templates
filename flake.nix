@@ -3,13 +3,13 @@
 
   outputs = { self, ... }: {
     templates = {
-      elixir-phx = {
-        path = ./elixir-phx;
-        description = "Elixir + Phoenix flake template";
+      elixir = {
+        path = ./elixir;
+        description = "Elixir flake template";
       };
-      elixir-phx-psql = {
-        path = ./elixir-phx-psql;
-        description = "Elixir + Phoenix + PSQL flake template";
+      elixir-psql = {
+        path = ./elixir-psql;
+        description = "Elixir + PSQL podman flake template";
       };
       python-poetry = {
         path = ./python-poetry;

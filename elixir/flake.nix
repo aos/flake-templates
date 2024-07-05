@@ -6,18 +6,18 @@
     system = "x86_64-linux";
 
     pkgs = import nixpkgs { inherit system; };
-    beamPkgs = with pkgs.beam_minimal; packagesWith interpreters.erlangR26;
+    beamPkgs = with pkgs.beam_minimal; packagesWith interpreters.erlang_27;
     erlang = beamPkgs.erlang;
-    elixir = beamPkgs.elixir_1_16;
-    hex = beamPkgs.hex;
-    elixir_ls = beamPkgs.elixir-ls;
+    elixir = beamPkgs.elixir_1_17;
   in {
     devShells."${system}".default = pkgs.mkShell {
       buildInputs = [
         erlang
         elixir
-        hex
-        elixir_ls
+
+        beamPkgs.hex
+        beamPkgs.elixir-ls
+
         pkgs.inotifyTools
         pkgs.nodejs
       ];
@@ -38,7 +38,7 @@
         export PATH=$MIX_HOME/escripts:$PATH
         export PATH=$HEX_HOME/bin:$PATH
 
-        # "Run: `mix archive.install hex phx_new` if need be."
+        # "Run: `mix archive.install hex phx_new` for phoenix."
       '';
     };
   };
