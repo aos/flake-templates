@@ -1,0 +1,22 @@
+name: "Update flakes"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * 1' # Weekly: Monday at 4 AM
+permissions:
+  pull-requests: write
+  contents: write
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          github_access_token: ${{ secrets.FLAKE_LOCK_TOKEN }}
+      - name: Update flake.lock
+        shell: bash
+        run: ./.github/update-flake-lock.sh
+        env:
+          FLAKE_DIRS: rust-app rust-shell
