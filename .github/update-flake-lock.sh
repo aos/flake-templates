@@ -28,8 +28,9 @@ if [[ -n "${PATH_TO_FLAKE_DIR:-}" ]]; then
   update
 elif [[ -n "${FLAKE_DIRS:-}" ]]; then
   for flake_dir in $FLAKE_DIRS; do
-    cd "$flake_dir"
+    pushd "$flake_dir"
     update
+    popd
   done
 else
   update

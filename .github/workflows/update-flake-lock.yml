@@ -7,7 +7,7 @@ permissions:
   pull-requests: write
   contents: write
 jobs:
-  createPullRequest:
+  createPR:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,4 +19,17 @@ jobs:
         shell: bash
         run: ./.github/update-flake-lock.sh
         env:
-          FLAKE_DIRS: rust-app rust-shell
+          FLAKE_DIRS: rust-app/ rust-shell/
+          COMMIT_MSG: "Update flake.lock"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "Update flake.lock"
+          body: "Automated flake update"
+          branch: "update-flake-lock-action"
+          delete-branch: true
+          commit-message: "Update flake.lock"
+          labels: |
+            github-action
+            update-flake-lock
+          token: ${{ secrets.FLAKE_LOCK_TOKEN }}
