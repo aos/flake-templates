@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: ./.github/update-flake-lock.sh
         env:
-          FLAKE_DIRS: rust-app/ rust-shell/
+          FLAKE_DIRS: rust-app/ rust-shell/ go-shell/
           COMMIT_MSG: "Update flake.lock"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
