@@ -8,6 +8,8 @@ permissions:
   contents: write
 
 env:
+  FLAKE_DIRS: rust-app/ rust-shell/ go-shell/
+
   GIT_AUTHOR_NAME: github-actions[bot]
   GIT_AUTHOR_EMAIL: <github-actions[bot]@users.noreply.github.com>
   GIT_COMMITTER_NAME: github-actions[bot]
@@ -26,17 +28,17 @@ jobs:
         shell: bash
         run: ./.github/update-flake-lock.sh
         env:
-          FLAKE_DIRS: rust-app/ rust-shell/ go-shell/
           COMMIT_MSG: "Update flake.lock"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
           title: "Update flake.lock"
-          body: "Automated flake update"
-          branch: "update-flake-lock-action"
+          branch: "maintenance/update-flake-lock"
           delete-branch: true
+          body: "Automated flake update for: ${{ env.FLAKE_DIRS }}"
           commit-message: "Update flake.lock"
           labels: |
             github-action
             update-flake-lock
           token: ${{ secrets.FLAKE_LOCK_TOKEN }}
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
