@@ -6,10 +6,22 @@
       elixir = {
         path = ./elixir;
         description = "Elixir flake template";
+        welcomeText = ''
+          For Phoenix applications, run:
+
+            mix archive.install hex phx_new
+        '';
       };
       elixir-psql = {
         path = ./elixir-psql;
         description = "Elixir + PSQL podman flake template";
+        welcomeText = ''
+          For Phoenix applications, run:
+
+            mix archive.install hex phx_new
+
+          Make sure to also supply the correct `pg_port` if need be.
+        '';
       };
       python-poetry = {
         path = ./python-poetry;

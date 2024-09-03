@@ -61,8 +61,6 @@
                      -e PGPORT=${pg_port} \
                      -p ${pg_port}:${pg_port} \
                      docker.io/postgres
-
-          echo 'Run: `mix archive.install hex phx_new` if need be.'
         fi
 
         # For convenience
