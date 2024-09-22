@@ -17,7 +17,7 @@
 
         beamPkgs.hex
         beamPkgs.elixir-ls
-        beamPkgs.livebook
+        (pkgs.livebook.override { inherit elixir erlang; })
 
         pkgs.inotifyTools
         pkgs.nodejs
