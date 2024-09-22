@@ -17,6 +17,7 @@
 
         beamPkgs.hex
         beamPkgs.elixir-ls
+        beamPkgs.livebook
 
         pkgs.inotifyTools
         pkgs.nodejs
