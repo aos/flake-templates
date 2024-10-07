@@ -28,7 +28,6 @@
 
       ERL_INCLUDE_PATH = "${erlang}/lib/erlang/usr/include";
       ERL_AFLAGS = "-kernel shell_history enabled";
-      PGPORT = "${pg_port}"
 
       shellHook = ''
         # Allow mix to work on local directory
