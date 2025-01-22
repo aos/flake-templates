@@ -47,6 +47,10 @@
         path = ./go-web-server;
         description = "Minimal Go web server template";
       };
+      zig-shell = {
+        path = ./zig-shell;
+        description = "Minimal Zig flake template";
+      };
     };
   };
 }
