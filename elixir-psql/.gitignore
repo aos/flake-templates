@@ -1,5 +1,6 @@
 result
 .direnv
+.jj
 
 .pg_docker_volume
 
