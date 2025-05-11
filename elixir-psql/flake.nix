@@ -7,7 +7,7 @@
     pkgs = import nixpkgs { inherit system; };
     beamPkgs = with pkgs.beam_minimal; packagesWith interpreters.erlang_27;
     erlang = beamPkgs.erlang;
-    elixir = beamPkgs.elixir_1_17;
+    elixir = beamPkgs.elixir_1_18;
 
     pg_port = "15432";
     pg_user = "postgres";
@@ -47,19 +47,20 @@
         base_cwd="''$(basename $PWD)"
         pwd_hash="''$(pwd | md5sum | awk '{print $1}' | head -c 6)"
         pg_cntr_name="psql-$base_cwd-$pwd_hash"
-        pg_docker_volume="$PWD/.pg_docker_volume"
+        pg_docker_volume="pg_docker_volume_$pwd_hash"
 
         status="$(podman inspect -f='{{.State.Status}}' $pg_cntr_name 2>/dev/null)"
         if [[ $? -eq 0 && $status =~ (exited|running|created) ]]; then
           podman start "$pg_cntr_name"
         else
           mkdir -p $pg_docker_volume
+          podman volume create "$pg_docker_volume"
           podman run --name "$pg_cntr_name" \
                      -d -v $pg_docker_volume:/var/lib/postgresql/data:rw \
                      -e POSTGRES_PASSWORD=${pg_pass} \
                      -e PGPORT=${pg_port} \
                      -p ${pg_port}:${pg_port} \
-                     docker.io/postgres
+                     docker.io/postgres:17.5-bookworm
         fi
 
         # For convenience

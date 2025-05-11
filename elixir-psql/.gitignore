@@ -2,7 +2,7 @@ result
 .direnv
 .jj
 
-.pg_docker_volume
+pg_docker_volume*
 
 # Local archives and packages
 .nix-mix
