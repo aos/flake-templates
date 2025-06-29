@@ -15,7 +15,6 @@ update(){
   fi
 }
 
-
 options=()
 if [[ -n "${NIX_OPTIONS:-}" ]]; then
     for option in $NIX_OPTIONS; do
