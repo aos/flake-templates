@@ -23,7 +23,7 @@
       {
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
-            zig_0_13
+            zig
             zls
           ];
         };
