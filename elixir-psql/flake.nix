@@ -21,13 +21,18 @@
         beamPkgs.hex
         beamPkgs.elixir-ls
 
-        pkgs.inotifyTools
+        pkgs.inotify-tools
         pkgs.nodejs
+        pkgs.tailwindcss_4
         pkgs.postgresql
+        pkgs.libnotify
       ];
 
       ERL_INCLUDE_PATH = "${erlang}/lib/erlang/usr/include";
       ERL_AFLAGS = "-kernel shell_history enabled";
+      TAILWINDCSS_PATH = pkgs.lib.getExe pkgs.tailwindcss_4;
+      # Make sure you set the tailwind path in config/config.exs!
+      # path: System.get_env("TAILWINDCSS_PATH")
 
       shellHook = ''
         # Allow mix to work on local directory
