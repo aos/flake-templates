@@ -3,6 +3,10 @@
 
   outputs = { self, ... }: {
     templates = {
+      dev-shell = {
+        path = ./dev-shell;
+        description = "A basic dev shell";
+      };
       elixir = {
         path = ./elixir;
         description = "Elixir flake template";
