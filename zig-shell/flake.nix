@@ -3,12 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    zig.url = "github:silversquirl/zig-flake/compat";
+    zig.url = "github:silversquirl/zig-flake";
     zls.url = "github:zigtools/zls";
 
     zig.inputs.nixpkgs.follows = "nixpkgs";
     zls.inputs.nixpkgs.follows = "nixpkgs";
-    zls.inputs.zig-overlay.follows = "zig";
   };
 
   outputs = { nixpkgs, zig, zls, ... }:

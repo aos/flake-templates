@@ -30,16 +30,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1791633694,
-        "narHash": "sha256-oCtlGmnSGhVU34azT7Lr3lnLxSChoy1GEnvb0zhX9nY=",
+        "lastModified": 1791988543,
+        "narHash": "sha256-jQTgF5l8R4BUspS/Xg8jklFTwPw3p9pQ4o3l9B+2jLk=",
         "owner": "silversquirl",
         "repo": "zig-flake",
-        "rev": "d81212b0124b5c7d112b92b8623122f9b3471ef6",
+        "rev": "63789d87a441f18c052def7a86bdfc3d01d0a63b",
         "type": "github"
       },
       "original": {
         "owner": "silversquirl",
-        "ref": "compat",
         "repo": "zig-flake",
         "type": "github"
       }
